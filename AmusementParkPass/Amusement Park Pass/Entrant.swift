@@ -21,8 +21,8 @@ enum EntrantType {
 extension EntrantType {
     var foodDiscount: String {
         switch self {
-        case .classicGuest: return ""
-        case .freeChild: return ""
+        case .classicGuest: return "0%"
+        case .freeChild: return "0%"
         case .vipGuest: return "10%"
         case .hourlyEmployeeFood: return "15%"
         case .hourlyEmployeeMaintainance: return "15%"
@@ -33,8 +33,8 @@ extension EntrantType {
         
     var discountMerchandise: String {
         switch self {
-        case .classicGuest: return ""
-        case .freeChild: return ""
+        case .classicGuest: return "0%"
+        case .freeChild: return "0%"
         case .vipGuest: return "20%"
         case .hourlyEmployeeFood: return "25%"
         case .hourlyEmployeeMaintainance: return "25%"
@@ -46,10 +46,17 @@ extension EntrantType {
 
 class Entrant {
     var type: EntrantType
+    var hasRidesAccess: Bool
     
-    init(entrantType: EntrantType) {
+    init(entrantType: EntrantType, canAccessRides: Bool) {
         type = entrantType
+        hasRidesAccess = canAccessRides
     }
+    
+    convenience init(entrantType: EntrantType) {
+        self.init(entrantType: entrantType, canAccessRides: true)
+    }
+    
     
     func getAreaAccess() -> [AreaAccess] {
         switch self.type {

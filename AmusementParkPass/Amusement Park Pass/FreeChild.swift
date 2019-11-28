@@ -8,13 +8,16 @@
 
 import Foundation
 
+enum ChildError: Error {
+    case dateOfBirthRequired
+}
+
 class FreeChild: Entrant {
     var dateOfBirth: Date
     
     init(entrantType: EntrantType, date: Date) {
-        // do some checks and validation logic to make sure it's an actual child
         dateOfBirth = date
-        super.init(entrantType: <#T##EntrantType#>)
+        super.init(entrantType: entrantType, canAccessRides: true)
     }
     
     // Add get set DOB

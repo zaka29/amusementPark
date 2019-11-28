@@ -17,6 +17,5 @@ enum AreaAccess {
 }
 
 enum RideAccess {
-    case allRides(canRideAll: Bool)
     case skipLines(canSkipLine: Bool)
 }

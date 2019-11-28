@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum EmployeeError: Error {
+    case businessInformationRequired(message: String)
+    case personalInformationRequired(message: String)
+}
+
 struct EmployeeBusinessInformation {
     var firstName: String
     var lastName: String
@@ -41,7 +46,7 @@ class HourlyEmployee: Entrant {
     
     init(type: EntrantType, businessInformation information: EmployeeBusinessInformation) {
         empolyeeInformation = information
-        super.init(entrantType: type)
+        super.init(entrantType: type, canAccessRides: true)
     }
     
     func getEmloyeeAddress() -> String {
