@@ -12,7 +12,7 @@ enum AreaAccess {
     case amusementArea
     case kitchenArea
     case rideControlArea
-    case maintainanceArea
+    case maintenanceArea
     case officeArea
 }
 

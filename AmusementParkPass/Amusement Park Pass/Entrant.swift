@@ -14,7 +14,7 @@ enum EntrantType {
     case freeChild
     case hourlyEmployeeFood
     case hourlyEmployeeService
-    case hourlyEmployeeMaintainance
+    case hourlyEmployeeMaintenance
     case manager
 }
 
@@ -25,7 +25,7 @@ extension EntrantType {
         case .freeChild: return "0%"
         case .vipGuest: return "10%"
         case .hourlyEmployeeFood: return "15%"
-        case .hourlyEmployeeMaintainance: return "15%"
+        case .hourlyEmployeeMaintenance: return "15%"
         case .hourlyEmployeeService: return "15%"
         case .manager: return "25%"
         }
@@ -37,7 +37,7 @@ extension EntrantType {
         case .freeChild: return "0%"
         case .vipGuest: return "20%"
         case .hourlyEmployeeFood: return "25%"
-        case .hourlyEmployeeMaintainance: return "25%"
+        case .hourlyEmployeeMaintenance: return "25%"
         case .hourlyEmployeeService: return "25%"
         case .manager: return "25%"
         }
@@ -65,15 +65,15 @@ class Entrant {
         case .freeChild: return [.amusementArea]
         case .hourlyEmployeeFood: return [.kitchenArea, .amusementArea]
         case .hourlyEmployeeService: return [.amusementArea, .rideControlArea]
-        case .hourlyEmployeeMaintainance: return [.maintainanceArea, .amusementArea]
-        case .manager: return [.amusementArea, .rideControlArea, .kitchenArea, .maintainanceArea, .officeArea]
+        case .hourlyEmployeeMaintenance: return [.maintenanceArea, .amusementArea]
+        case .manager: return [.amusementArea, .rideControlArea, .kitchenArea, .maintenanceArea, .officeArea]
         }
     }
         
     func canSkipLines() -> RideAccess {
         switch self.type {
         case .vipGuest: return .skipLines(canSkipLine: true)
-        case .classicGuest, .freeChild, .hourlyEmployeeFood, .hourlyEmployeeMaintainance, .hourlyEmployeeService, .manager: return .skipLines(canSkipLine: false)
+        case .classicGuest, .freeChild, .hourlyEmployeeFood, .hourlyEmployeeMaintenance, .hourlyEmployeeService, .manager: return .skipLines(canSkipLine: false)
         }
     }
     

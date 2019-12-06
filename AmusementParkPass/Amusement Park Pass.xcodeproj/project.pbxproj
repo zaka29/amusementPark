@@ -17,6 +17,8 @@
 		9B24E355238E8D3C00C8FB15 /* Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B24E354238E8D3C00C8FB15 /* Access.swift */; };
 		9B710BFF238EC19A00F7DB6F /* HourlyEmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B710BFE238EC19A00F7DB6F /* HourlyEmployee.swift */; };
 		9B710C01238ECE4400F7DB6F /* FreeChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B710C00238ECE4400F7DB6F /* FreeChild.swift */; };
+		9BEC5D012399454E00EA5ECF /* PassPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC5D002399454E00EA5ECF /* PassPageController.swift */; };
+		9BEC5D03239A5F2400EA5ECF /* Submenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC5D02239A5F2400EA5ECF /* Submenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		9B24E354238E8D3C00C8FB15 /* Access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Access.swift; sourceTree = "<group>"; };
 		9B710BFE238EC19A00F7DB6F /* HourlyEmployee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyEmployee.swift; sourceTree = "<group>"; };
 		9B710C00238ECE4400F7DB6F /* FreeChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeChild.swift; sourceTree = "<group>"; };
+		9BEC5D002399454E00EA5ECF /* PassPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassPageController.swift; sourceTree = "<group>"; };
+		9BEC5D02239A5F2400EA5ECF /* Submenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 			children = (
 				9B24E330238D855C00C8FB15 /* AppDelegate.swift */,
 				9B24E332238D855C00C8FB15 /* SceneDelegate.swift */,
+				9BEC5D002399454E00EA5ECF /* PassPageController.swift */,
 				9B24E334238D855C00C8FB15 /* ViewController.swift */,
 				9B24E336238D855C00C8FB15 /* Main.storyboard */,
 				9B24E339238D855D00C8FB15 /* Assets.xcassets */,
@@ -94,6 +99,7 @@
 				9B710BFE238EC19A00F7DB6F /* HourlyEmployee.swift */,
 				9B24E354238E8D3C00C8FB15 /* Access.swift */,
 				9B710C00238ECE4400F7DB6F /* FreeChild.swift */,
+				9BEC5D02239A5F2400EA5ECF /* Submenu.swift */,
 			);
 			path = "Amusement Park Pass";
 			sourceTree = "<group>";
@@ -202,9 +208,11 @@
 				9B24E353238E8C3700C8FB15 /* Entrant.swift in Sources */,
 				9B24E335238D855C00C8FB15 /* ViewController.swift in Sources */,
 				9B24E331238D855C00C8FB15 /* AppDelegate.swift in Sources */,
+				9BEC5D012399454E00EA5ECF /* PassPageController.swift in Sources */,
 				9B24E355238E8D3C00C8FB15 /* Access.swift in Sources */,
 				9B710BFF238EC19A00F7DB6F /* HourlyEmployee.swift in Sources */,
 				9B710C01238ECE4400F7DB6F /* FreeChild.swift in Sources */,
+				9BEC5D03239A5F2400EA5ECF /* Submenu.swift in Sources */,
 				9B24E333238D855C00C8FB15 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
