@@ -16,6 +16,8 @@ enum EmployeeError: Error {
 struct EmployeeBusinessInformation {
     var firstName: String
     var lastName: String
+    var socialSecurityNumber: String
+    var dob: String
     var city: String
     var street: String
     var state: String
