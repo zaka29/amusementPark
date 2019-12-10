@@ -12,7 +12,7 @@ enum GuestError: Error {
     case informationRequired(message: String)
 }
 
-struct Address {
+struct GuestAddress {
     var city = "Brisbane"
     var street = "Unit 3 5 Computer Street"
     var state = "QLD"
@@ -27,7 +27,7 @@ struct GuestPersonalInformation {
     var firstName = "Crocodile"
     var lastName = "Dundee"
     var dateString = "09/23/2017"
-    var address: Address?
+    var address: GuestAddress
     
     var fullName: String {
         return "\(firstName) \(lastName)"
@@ -63,6 +63,8 @@ struct GuestPersonalInformation {
 
 class Guest: Entrant {
     var personalInformation: GuestPersonalInformation?
+    
+    // to do: make a failable initialiser like in Free Child
     
     init(type: EntrantType, guestInformation info: GuestPersonalInformation) {
         personalInformation = info

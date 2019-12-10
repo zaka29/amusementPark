@@ -28,46 +28,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var cityField: UITextField!
     @IBOutlet weak var codeField: UITextField!
     
-    
-    
-    
 
+    @IBOutlet var fields: [UITextField]!
+    
     @IBOutlet weak var generatePassButton: UIButton!
     @IBOutlet weak var populateDataButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         testGuestsTypes()
-        
-//        for field in self.textFields {
-//            print("this is a field - \(field)")
-//        }
-        
+        applyFieldsStyles()
     }
     
     override func viewWillLayoutSubviews() {
-        
-        
-        
-//        fieldDob.alpha = 0.5
-//        fieldDob.layer.borderColor = #colorLiteral(red: 0.6133695841, green: 0.5142332911, blue: 0.7238066792, alpha: 1)
-//        fieldDob.layer.borderWidth = 1.0
-//        fieldDob.layer.cornerRadius = 3.0
-        
         generatePassButton.layer.cornerRadius = 3.0
         populateDataButton.layer.cornerRadius = 3.0
-        
-//        fieldSsn.alpha = 0.5
-//        fieldSsn.layer.borderColor = #colorLiteral(red: 0.6335280538, green: 0.5039176941, blue: 0.7410507798, alpha: 1)
-//        fieldSsn.layer.borderWidth = 1.0
-//        fieldSsn.layer.cornerRadius = 3.0
-//
-//        fieldProjectNumber.alpha = 0.5
-//        fieldProjectNumber.layer.borderColor = #colorLiteral(red: 0.6335280538, green: 0.5039176941, blue: 0.7410507798, alpha: 1)
-//        fieldProjectNumber.layer.borderWidth = 1.0
-//        fieldProjectNumber.layer.cornerRadius = 3.0
     }
     
     func swipeRidesAccess(for entrant: Entrant) -> Bool {
@@ -84,6 +60,28 @@ class ViewController: UIViewController {
             }
         }
         return permisionGranted
+    }
+    
+    func applyFieldsStyles() {
+        for field in self.fields {
+            field.alpha = 0.5
+            field.layer.borderColor = #colorLiteral(red: 0.6335280538, green: 0.5039176941, blue: 0.7410507798, alpha: 1)
+            field.layer.borderWidth = 1.0
+            field.layer.cornerRadius = 3.0
+        }
+    }
+    
+    func cleanAllFields() {
+        for field in self.fields {
+            field.text?.removeAll()
+        }
+    }
+    
+    func deactivateAllFields() {
+        for field in self.fields {
+            field.isEnabled = false
+            field.alpha = 0.5
+        }
     }
     
     // Test cases
@@ -114,13 +112,13 @@ class ViewController: UIViewController {
         print("Kitchen worker has access to kitchen areas - \(swipeAreaAcces(for: kitchenWorker, to: .kitchenArea))")
         // can aceess office
         print("Kitchen worker has access to office areas - \(swipeAreaAcces(for: kitchenWorker, to: .officeArea))")
-        
-    }
+            }
 
     @IBAction func onMenuItemTap(_ sender: UIButton) {
         print("Button clicked - \(String(describing: sender.titleLabel?.text))")
         submenuStackView.subviews.forEach {$0.removeFromSuperview()}
         deactivateAllFields()
+        cleanAllFields()
         
         switch sender.titleLabel?.text {
         case "Guest":
@@ -136,9 +134,24 @@ class ViewController: UIViewController {
             guard let menuItems = subMenu.generateSubmenuItems() else { return }
             subMenu.populateSubmenu(with: menuItems, for: submenuStackView)
         case "Manager":
-            let subMenu = Submenu(for: .manager)
-            guard let menuItems = subMenu.generateSubmenuItems() else { return }
-            subMenu.populateSubmenu(with: menuItems, for: submenuStackView)
+            currentEntrantType = .manager
+            fieldDob.isEnabled = true
+            fieldSsn.isEnabled = true
+            firstNameField.isEnabled = true
+            lastNameField.isEnabled = true
+            streetAddressField.isEnabled = true
+            cityField.isEnabled = true
+            stateField.isEnabled = true
+            codeField.isEnabled = true
+            fieldDob.alpha = 1
+            fieldSsn.alpha = 1
+            firstNameField.alpha = 1
+            lastNameField.alpha = 1
+            streetAddressField.alpha = 1
+            cityField.alpha = 1
+            stateField.alpha = 1
+            codeField.alpha = 1
+            
         case "Vendor":
             let subMenu = Submenu(for: .vendor)
             guard let menuItems = subMenu.generateSubmenuItems() else { return }
@@ -150,52 +163,131 @@ class ViewController: UIViewController {
     
     @objc func subMenuItemsActionHandler(_ responder: UIButton) {
         deactivateAllFields()
+        cleanAllFields()
+        
         switch responder.titleLabel?.text {
         case "Child":
             currentEntrantType = .freeChild
             fieldDob.isEnabled = true
             fieldDob.alpha = 1.0
             
-        case "Adult":
-            deactivateAllFields()
-            currentEntrantType = .classicGuest
+        case "Adult": currentEntrantType = .classicGuest
         case "Senior":
             currentEntrantType = .seniorGuest
-        case "Vip":
-            currentEntrantType = .vipGuest
+            fieldDob.isEnabled = true
+            fieldDob.alpha = 1
+            firstNameField.isEnabled = true
+            firstNameField.alpha = 1
+            lastNameField.isEnabled = true
+            lastNameField.alpha = 1
+            
+        case "Vip": currentEntrantType = .vipGuest
         case "Season Pass":
             currentEntrantType = .seasonPass
+            fieldDob.isEnabled = true
+            fieldDob.alpha = 1
+            firstNameField.isEnabled = true
+            firstNameField.alpha = 1
+            lastNameField.isEnabled = true
+            lastNameField.alpha = 1
+            streetAddressField.isEnabled = true
+            streetAddressField.alpha = 1
+            cityField.isEnabled = true
+            cityField.alpha = 1
+            stateField.isEnabled = true
+            stateField.alpha = 1
+            codeField.isEnabled = true
+            codeField.alpha = 1
+            
+        case "Food services":
+            currentEntrantType = .hourlyEmployeeFood
+            fieldDob.isEnabled = true
+            fieldSsn.isEnabled = true
+            firstNameField.isEnabled = true
+            lastNameField.isEnabled = true
+            streetAddressField.isEnabled = true
+            cityField.isEnabled = true
+            stateField.isEnabled = true
+            codeField.isEnabled = true
+            fieldDob.alpha = 1
+            fieldSsn.alpha = 1
+            firstNameField.alpha = 1
+            lastNameField.alpha = 1
+            streetAddressField.alpha = 1
+            cityField.alpha = 1
+            stateField.alpha = 1
+            codeField.alpha = 1
+            
+        case "Ride services":
+            currentEntrantType = .hourlyEmployeeService
+            fieldDob.isEnabled = true
+            fieldSsn.isEnabled = true
+            firstNameField.isEnabled = true
+            lastNameField.isEnabled = true
+            streetAddressField.isEnabled = true
+            cityField.isEnabled = true
+            stateField.isEnabled = true
+            codeField.isEnabled = true
+            fieldDob.alpha = 1
+            fieldSsn.alpha = 1
+            firstNameField.alpha = 1
+            lastNameField.alpha = 1
+            streetAddressField.alpha = 1
+            cityField.alpha = 1
+            stateField.alpha = 1
+            codeField.alpha = 1
+        case "Maintenance":
+            currentEntrantType = .hourlyEmployeeMaintenance
+            fieldDob.isEnabled = true
+            fieldSsn.isEnabled = true
+            firstNameField.isEnabled = true
+            lastNameField.isEnabled = true
+            streetAddressField.isEnabled = true
+            cityField.isEnabled = true
+            stateField.isEnabled = true
+            codeField.isEnabled = true
+            fieldDob.alpha = 1
+            fieldSsn.alpha = 1
+            firstNameField.alpha = 1
+            lastNameField.alpha = 1
+            streetAddressField.alpha = 1
+            cityField.alpha = 1
+            stateField.alpha = 1
+            codeField.alpha = 1
+            
+        case "Contractor": currentEntrantType = .contractor
+        case "Vendor": currentEntrantType = .vendor
+            
         default:
             print("button is clicked \(String(describing: responder.titleLabel?.text))")
-            
         }
     }
-    
-    func deactivateAllFields() {
-        fieldDob.isEnabled = false
-        fieldDob.alpha = 0.5
-        fieldSsn.isEnabled = false
-        fieldProjectNumber.isEnabled = false
-    }
+
     
     @IBAction func populateDateAction(_ sender: UIButton) {
         print("populate data and currently selected - \(currentEntrantType)")
+        
+        
         switch currentEntrantType {
         case .classicGuest:
             print("button selected ->>")
         case .seniorGuest:
-            print("button selected ->>")
-        case .seasonPass:
-            print("button selected ->>")
-        case .vipGuest:
-            let vipTestData = GuestPersonalInformation(address: Address())
-            firstNameField.text = vipTestData.firstName
-            lastNameField.text = vipTestData.lastName
-            streetAddressField.text = vipTestData.address?.street
-            cityField.text = vipTestData.address?.city
-            stateField.text = vipTestData.address?.state
-            codeField.text = vipTestData.address?.code
+            let seniorGuestData = GuestPersonalInformation(address: GuestAddress())
+            fieldDob.text = seniorGuestData.dateString
+            firstNameField.text = seniorGuestData.firstName
+            lastNameField.text = seniorGuestData.lastName
             
+        case .seasonPass:
+            let seasonPassData = GuestPersonalInformation(address: GuestAddress())
+            fieldDob.text = seasonPassData.dateString
+            firstNameField.text = seasonPassData.firstName
+            lastNameField.text = seasonPassData.lastName
+            streetAddressField.text = seasonPassData.address.street
+            cityField.text = seasonPassData.address.city
+            stateField.text = seasonPassData.address.state
+            codeField.text = seasonPassData.address.code
+            
+        case .vipGuest:
             print("button selected ->>")
     
         case .freeChild:
@@ -203,14 +295,28 @@ class ViewController: UIViewController {
             fieldDob.text = freeChildTestData.dateString
             fieldDob.alpha = 1
             
-        case .hourlyEmployeeFood:
-            print("button selected ->>")
-        case .hourlyEmployeeService:
-            print("button selected ->>")
-        case .hourlyEmployeeMaintenance:
-            print("button selected ->>")
+        case .hourlyEmployeeFood, .hourlyEmployeeService, .hourlyEmployeeMaintenance:
+            let employeeData = EmployeeBusinessInformation(address: EmployeeAddress())
+            fieldDob.text = employeeData.dobString
+            firstNameField.text = employeeData.firstName
+            lastNameField.text = employeeData.lastName
+            fieldSsn.text = employeeData.socialSecurityNumber
+            streetAddressField.text = employeeData.address.street
+            cityField.text = employeeData.address.city
+            stateField.text = employeeData.address.state
+            codeField.text = employeeData.address.code
+            
         case .manager:
-            print("button selected ->>")
+            let managerData = ManagerBusinessInformation(address: ManagerAddress())
+            fieldDob.text = managerData.dobString
+            firstNameField.text = managerData.firstName
+            lastNameField.text = managerData.lastName
+            fieldSsn.text = managerData.socialSecurityNumber
+            streetAddressField.text = managerData.address.street
+            cityField.text = managerData.address.city
+            stateField.text = managerData.address.state
+            codeField.text = managerData.address.code
+            
         case .contractor:
             print("button selected ->>")
         case .vendor:
