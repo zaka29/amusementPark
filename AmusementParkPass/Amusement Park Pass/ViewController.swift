@@ -11,12 +11,13 @@ import UIKit
 class ViewController: UIViewController {
     
     var currentEntrantType: EntrantType = .classicGuest
-
+    
     @IBOutlet weak var guestButton: UIButton!
     @IBOutlet weak var employeeButton: UIButton!
     @IBOutlet weak var managerButton: UIButton!
     @IBOutlet weak var vendorButton: UIButton!
     @IBOutlet weak var submenuStackView: UIStackView!
+    
     // Text fields
     @IBOutlet weak var fieldDob: UITextField!
     @IBOutlet weak var fieldSsn: UITextField!
@@ -39,6 +40,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         testGuestsTypes()
         applyFieldsStyles()
+        generatePassButton.addTarget(self, action: #selector(generatePass), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -46,6 +48,11 @@ class ViewController: UIViewController {
         populateDataButton.layer.cornerRadius = 3.0
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+    }
     func swipeRidesAccess(for entrant: Entrant) -> Bool {
         return entrant.hasRidesAccess
     }
@@ -122,6 +129,7 @@ class ViewController: UIViewController {
         
         switch sender.titleLabel?.text {
         case "Guest":
+            currentEntrantType = .classicGuest
             let subMenu = Submenu(for: .guest)
             guard let menuItems = subMenu.generateSubmenuItems() else { return }
             subMenu.populateSubmenu(with: menuItems, for: submenuStackView)
@@ -272,14 +280,14 @@ class ViewController: UIViewController {
         case .classicGuest:
             print("button selected ->>")
         case .seniorGuest:
-            let seniorGuestData = GuestPersonalInformation(address: GuestAddress())
-            fieldDob.text = seniorGuestData.dateString
+            let seniorGuestData = GuestPersonalDetails(address: Address())
+            fieldDob.text = seniorGuestData.dobString
             firstNameField.text = seniorGuestData.firstName
             lastNameField.text = seniorGuestData.lastName
             
         case .seasonPass:
-            let seasonPassData = GuestPersonalInformation(address: GuestAddress())
-            fieldDob.text = seasonPassData.dateString
+            let seasonPassData = GuestPersonalDetails(address: Address())
+            fieldDob.text = seasonPassData.dobString
             firstNameField.text = seasonPassData.firstName
             lastNameField.text = seasonPassData.lastName
             streetAddressField.text = seasonPassData.address.street
@@ -325,7 +333,81 @@ class ViewController: UIViewController {
     }
     
     
-    func generatePass() {
+    @objc func generatePass() {
+        
+        var guest: Entrant?
+        let alert = UIAlertController(title: "Generate Pass Error", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert.message = ""
+        
+        // switch based on selection type, potentially move to a factory method
+        switch self.currentEntrantType {
+        case .classicGuest:
+            guest = ClassicGuest()
+        
+        case .contractor:
+            print("this is a guest")
+            
+        case .freeChild:
+            do {
+                try guest = FreeChild(dateString: fieldDob.text ?? "")
+            } catch ChildError.dateOfBirthRequired(let message) {
+                alert.message = message
+                self.present(alert, animated: true, completion: nil)
+            } catch {
+                print("something else happened")
+            }
+            
+        case .hourlyEmployeeFood:
+            print("this is a guest")
+            
+        case .hourlyEmployeeMaintenance:
+            print("this is a guest")
+            
+        case .hourlyEmployeeService:
+            print("this is a guest")
+        case .manager:
+            print("this is a guest")
+        case .seasonPass:
+            var address = Address()
+            address.street = streetAddressField.text ?? ""
+            address.city = cityField.text ?? ""
+            address.code = codeField.text ?? ""
+            address.state = stateField.text ?? ""
+            
+            var details = GuestPersonalDetails(address: address)
+            details.dobString = fieldDob.text ?? ""
+            details.firstName = firstNameField.text ?? ""
+            details.lastName = lastNameField.text ?? ""
+            
+            do {
+                try guest = SeasonPassGuest(guestDetais: details)
+            } catch GuestError.dateOfBirthRequired(let message) {
+                alert.message = message
+                self.present(alert, animated: true, completion: nil)
+            } catch GuestError.personalDetailsRequires(let message) {
+                alert.message = message
+                self.present(alert, animated: true, completion: nil)
+            } catch {
+                print("something else happened")
+            }
+            
+        case .seniorGuest:
+            print("this is a guest")
+        case .vendor:
+            print("this is a guest")
+        case .vipGuest:
+            print("this is a guest")
+        }
+        
+        if let guest = guest {
+            let pass = Pass(guest)
+            let passPageController = PassPageController(parkPass: pass)
+            navigationController?.pushViewController(passPageController, animated: true)
+            navigationController?.isNavigationBarHidden = true
+        } else {
+            print("Guest must be provided")
+        }
         
     }
 }

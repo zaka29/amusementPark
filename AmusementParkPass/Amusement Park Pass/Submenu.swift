@@ -53,7 +53,6 @@ struct Submenu {
     func populateSubmenu(with items: [UIButton], for subMenu: UIStackView) {
         
         for item in items {
-            subMenu.addSubview(item)
             subMenu.addArrangedSubview(item)
             item.translatesAutoresizingMaskIntoConstraints = false
             item.addTarget(self, action: #selector(ViewController.subMenuItemsActionHandler), for: .touchUpInside)

@@ -16,6 +16,10 @@
 		9B24E353238E8C3700C8FB15 /* Entrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B24E352238E8C3700C8FB15 /* Entrant.swift */; };
 		9B24E355238E8D3C00C8FB15 /* Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B24E354238E8D3C00C8FB15 /* Access.swift */; };
 		9B6324D0239FEA60000928DD /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6324CF239FEA60000928DD /* Manager.swift */; };
+		9B6324D223A25B2B000928DD /* Pass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6324D123A25B2B000928DD /* Pass.swift */; };
+		9B6324D423A27055000928DD /* SeasonPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6324D323A27055000928DD /* SeasonPass.swift */; };
+		9B6324D623A2A73A000928DD /* SeniorGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6324D523A2A73A000928DD /* SeniorGuest.swift */; };
+		9B6324D823A2A795000928DD /* VipGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6324D723A2A795000928DD /* VipGuest.swift */; };
 		9B710BFF238EC19A00F7DB6F /* HourlyEmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B710BFE238EC19A00F7DB6F /* HourlyEmployee.swift */; };
 		9B710C01238ECE4400F7DB6F /* FreeChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B710C00238ECE4400F7DB6F /* FreeChild.swift */; };
 		9BEC5D012399454E00EA5ECF /* PassPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC5D002399454E00EA5ECF /* PassPageController.swift */; };
@@ -46,6 +50,10 @@
 		9B24E352238E8C3700C8FB15 /* Entrant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrant.swift; sourceTree = "<group>"; };
 		9B24E354238E8D3C00C8FB15 /* Access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Access.swift; sourceTree = "<group>"; };
 		9B6324CF239FEA60000928DD /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		9B6324D123A25B2B000928DD /* Pass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pass.swift; sourceTree = "<group>"; };
+		9B6324D323A27055000928DD /* SeasonPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonPass.swift; sourceTree = "<group>"; };
+		9B6324D523A2A73A000928DD /* SeniorGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorGuest.swift; sourceTree = "<group>"; };
+		9B6324D723A2A795000928DD /* VipGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipGuest.swift; sourceTree = "<group>"; };
 		9B710BFE238EC19A00F7DB6F /* HourlyEmployee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyEmployee.swift; sourceTree = "<group>"; };
 		9B710C00238ECE4400F7DB6F /* FreeChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeChild.swift; sourceTree = "<group>"; };
 		9BEC5D002399454E00EA5ECF /* PassPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassPageController.swift; sourceTree = "<group>"; };
@@ -103,9 +111,13 @@
 				9BEC5D02239A5F2400EA5ECF /* Submenu.swift */,
 				9B24E352238E8C3700C8FB15 /* Entrant.swift */,
 				9BEC5D04239E6E4E00EA5ECF /* Guest.swift */,
+				9B6324D723A2A795000928DD /* VipGuest.swift */,
+				9B6324D323A27055000928DD /* SeasonPass.swift */,
+				9B6324D523A2A73A000928DD /* SeniorGuest.swift */,
 				9B710C00238ECE4400F7DB6F /* FreeChild.swift */,
 				9B710BFE238EC19A00F7DB6F /* HourlyEmployee.swift */,
 				9B6324CF239FEA60000928DD /* Manager.swift */,
+				9B6324D123A25B2B000928DD /* Pass.swift */,
 			);
 			path = "Amusement Park Pass";
 			sourceTree = "<group>";
@@ -215,10 +227,14 @@
 				9B24E353238E8C3700C8FB15 /* Entrant.swift in Sources */,
 				9B24E335238D855C00C8FB15 /* ViewController.swift in Sources */,
 				9B24E331238D855C00C8FB15 /* AppDelegate.swift in Sources */,
+				9B6324D223A25B2B000928DD /* Pass.swift in Sources */,
 				9BEC5D012399454E00EA5ECF /* PassPageController.swift in Sources */,
+				9B6324D623A2A73A000928DD /* SeniorGuest.swift in Sources */,
+				9B6324D423A27055000928DD /* SeasonPass.swift in Sources */,
 				9B24E355238E8D3C00C8FB15 /* Access.swift in Sources */,
 				9B710BFF238EC19A00F7DB6F /* HourlyEmployee.swift in Sources */,
 				9B710C01238ECE4400F7DB6F /* FreeChild.swift in Sources */,
+				9B6324D823A2A795000928DD /* VipGuest.swift in Sources */,
 				9B6324D0239FEA60000928DD /* Manager.swift in Sources */,
 				9BEC5D03239A5F2400EA5ECF /* Submenu.swift in Sources */,
 				9B24E333238D855C00C8FB15 /* SceneDelegate.swift in Sources */,

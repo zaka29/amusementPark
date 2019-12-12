@@ -27,7 +27,7 @@ struct FreeChildData {
 class FreeChild: Entrant {
     var dateOfBirth: Date
     
-    init(entrantType: EntrantType, dateString date: String) throws {
+    init(dateString date: String) throws {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "mm/dd/yyyy"
         
@@ -36,7 +36,7 @@ class FreeChild: Entrant {
         }
         
         dateOfBirth = dateFormatted
-        super.init(entrantType: entrantType, canAccessRides: true)
+        super.init(entrantType: .freeChild, canAccessRides: true)
     }
     
     func convertDate(toString fromDate: Date) -> String {

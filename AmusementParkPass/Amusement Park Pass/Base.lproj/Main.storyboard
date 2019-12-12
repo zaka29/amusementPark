@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c4v-Ay-hvQ">
     <device id="ipad10_2" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -7,6 +7,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="MyM-3z-NRS">
+            <objects>
+                <navigationController id="c4v-Ay-hvQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="och-Lk-ook">
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="WBS-gr-Zw8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ayv-ww-ijp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1456" y="-28"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -16,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJu-jo-dXV">
-                                <rect key="frame" x="0.0" y="0.0" width="810" height="79"/>
+                                <rect key="frame" x="0.0" y="50" width="810" height="79"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wVg-Ad-ral">
                                         <rect key="frame" x="10" y="10" width="790" height="59"/>
@@ -69,7 +85,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYX-Y2-pfD">
-                                <rect key="frame" x="0.0" y="79" width="810" height="49"/>
+                                <rect key="frame" x="0.0" y="129" width="810" height="49"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BaJ-8P-NYe">
                                         <rect key="frame" x="0.0" y="0.0" width="810" height="49"/>
@@ -85,7 +101,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="thx-Xq-tKF">
-                                <rect key="frame" x="20" y="128" width="770" height="770"/>
+                                <rect key="frame" x="20" y="178" width="770" height="770"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wVc-h0-LGc">
                                         <rect key="frame" x="0.0" y="0.0" width="770" height="120"/>
@@ -519,7 +535,7 @@
                         <outletCollection property="fields" destination="Gxs-FW-oea" collectionClass="NSMutableArray" id="cRa-T9-Ssu"/>
                         <outletCollection property="fields" destination="9bM-Bu-Q7A" collectionClass="NSMutableArray" id="t5n-5X-F6h"/>
                         <outletCollection property="fields" destination="iYP-iY-PGU" collectionClass="NSMutableArray" id="puC-7K-WI9"/>
-                        <segue destination="uWw-2M-BnQ" kind="show" identifier="generatePassSegue" id="mR7-oG-iqU"/>
+                        <segue destination="uWw-2M-BnQ" kind="show" id="nBM-yn-d0C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -531,9 +547,27 @@
             <objects>
                 <viewController id="uWw-2M-BnQ" customClass="PassPageController" customModule="Amusement_Park_Pass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ICY-bW-WEu">
-                        <rect key="frame" x="0.0" y="0.0" width="712" height="1006.9200564096436"/>
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X33-ez-vHH">
+                                <rect key="frame" x="10" y="1011" width="790" height="49"/>
+                                <color key="backgroundColor" red="0.34901960780000002" green="0.58431372550000005" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="O7j-T9-GA3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="pIe-DP-Rly" firstAttribute="trailing" secondItem="X33-ez-vHH" secondAttribute="trailing" constant="10" id="EZn-JR-uBE"/>
+                            <constraint firstItem="X33-ez-vHH" firstAttribute="leading" secondItem="pIe-DP-Rly" secondAttribute="leading" constant="10" id="Ms0-8F-SF9"/>
+                            <constraint firstItem="pIe-DP-Rly" firstAttribute="bottom" secondItem="X33-ez-vHH" secondAttribute="bottom" constant="20" id="gPe-Vy-5B6"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="pIe-DP-Rly"/>
                     </view>
                     <navigationItem key="navigationItem" id="hMK-y1-NO8"/>

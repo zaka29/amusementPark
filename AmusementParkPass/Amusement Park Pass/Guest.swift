@@ -9,13 +9,15 @@
 import Foundation
 
 enum GuestError: Error {
-    case informationRequired(message: String)
+    case dateOfBirthRequired(message: String)
+    case personalDetailsRequires(message: String)
 }
 
-struct GuestAddress {
-    var city = "Brisbane"
-    var street = "Unit 3 5 Computer Street"
-    var state = "QLD"
+// A simple guest
+struct Address {
+    var city = "Melbourne"
+    var street = "Unit 3 5 Fitzroy Ave"
+    var state = "VIC"
     var code = "4005"
     
     var fullAddress: String {
@@ -23,75 +25,30 @@ struct GuestAddress {
     }
 }
 
-struct GuestPersonalInformation {
-    var firstName = "Crocodile"
-    var lastName = "Dundee"
-    var dateString = "09/23/2017"
-    var address: GuestAddress
+struct GuestPersonalDetails {
+    var firstName = "Joshua"
+    var lastName = "Smith"
+    var dobString = "12/25/2000"
+    var address: Address
     
     var fullName: String {
         return "\(firstName) \(lastName)"
     }
     
-    var dateOfBirth: Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "mm/dd/yyyy"
-        
-        guard let formattedDate = dateFormatter.date(from: dateString) else {return nil}
-        
-        return formattedDate
-    }
-    
     // add setters
-    mutating func setName(firstName name: String) throws {
-        guard !name.isEmpty else {
-            throw GuestError.informationRequired(message: "Name maust be provided")
-        }
-        
-        self.firstName = name
+    mutating func settName(_ firstName: String) {
+        self.firstName = firstName
     }
     
-    mutating func setName(lastName name: String) throws {
-        guard !name.isEmpty else {
-           throw GuestError.informationRequired(message: "Last name maust be provided")
-        }
-        
-        self.lastName = name
+    mutating func setName(_ lastName: String) {
+        self.lastName = lastName
     }
     
 }
 
-class Guest: Entrant {
-    var personalInformation: GuestPersonalInformation?
-    
-    // to do: make a failable initialiser like in Free Child
-    
-    init(type: EntrantType, guestInformation info: GuestPersonalInformation) {
-        personalInformation = info
-        super.init(entrantType: type,  canAccessRides: true)
+class ClassicGuest: Entrant {
+    init() {
+        super.init(entrantType: .classicGuest, canAccessRides: true)
     }
-    
-    func setName(firstName name: String){
-        do {
-           try personalInformation?.setName(firstName: name)
-        } catch GuestError.informationRequired(let message) {
-            print("Guest error -  \(message)")
-        } catch {
-            print("unexpected error")
-        }
-    }
-    
-    func setName(lastName name: String){
-        do {
-            try personalInformation?.setName(lastName: name)
-        } catch GuestError.informationRequired(let message) {
-            print("Guest error - \(message)")
-        } catch {
-            print("Unexpected error")
-        }
-    }
-
 }
-
-
 
