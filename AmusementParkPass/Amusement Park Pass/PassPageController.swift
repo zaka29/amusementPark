@@ -11,6 +11,13 @@ import UIKit
 class PassPageController: UIViewController {
     var pass: Pass?
     
+    lazy var passImage: UIImageView = {
+        var imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = #imageLiteral(resourceName: "FaceImageAsset")
+        return imageView
+    }()
+    
     lazy var topBarLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +36,6 @@ class PassPageController: UIViewController {
     lazy var viewPassContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return view
     }()
     
@@ -37,6 +43,14 @@ class PassPageController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        return view
+    }()
+    
+    lazy var viewPass: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.layer.cornerRadius = 8.0
         return view
     }()
     
@@ -83,17 +97,16 @@ class PassPageController: UIViewController {
             createNewPassButton.heightAnchor.constraint(equalToConstant: 49.0)
         ])
         
-//        let viewPassContainerHeight = viewPassContainer.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4)
-        let viewPassContainerHeight = viewPassContainer.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor, multiplier: 0.4)
-        
-        let viewPassTestHeigt = viewPassTest.heightAnchor.constraint(equalTo: viewPassContainer.heightAnchor, multiplier: 1.1)
+
+        let viewPassContainerHeight = viewPassContainer.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor, multiplier: 0.3)
+        let viewPassTestHeigt = viewPassTest.heightAnchor.constraint(equalTo: viewPassContainer.heightAnchor, multiplier: 1.2)
         viewPassTestHeigt.priority = .defaultHigh
         
         // Pass container and Pass test viws layouts
         NSLayoutConstraint.activate([
             viewPassContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30.00),
             viewPassContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.00),
-            viewPassContainer.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 10.00),
+            viewPassContainer.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 30.00),
             viewPassContainer.bottomAnchor.constraint(equalTo: viewPassTest.topAnchor, constant: -10.00),
             viewPassContainerHeight,
             viewPassTest.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30.00),
@@ -101,8 +114,24 @@ class PassPageController: UIViewController {
             viewPassTest.bottomAnchor.constraint(equalTo: createNewPassButton.topAnchor, constant: -10.00),
             viewPassTestHeigt
         ])
-    
         
+        viewPassContainer.addSubview(viewPass)
+        
+        NSLayoutConstraint.activate([
+            viewPass.topAnchor.constraint(equalTo: viewPassContainer.topAnchor, constant: 0),
+            viewPass.leadingAnchor.constraint(equalTo: viewPassContainer.leadingAnchor, constant: 0),
+            viewPass.trailingAnchor.constraint(equalTo: viewPassContainer.trailingAnchor, constant: 0),
+            viewPass.bottomAnchor.constraint(equalTo: viewPassContainer.bottomAnchor, constant: -30.0)
+        ])
+        
+        viewPass.addSubview(passImage)
+        
+        NSLayoutConstraint.activate([
+            passImage.centerYAnchor.constraint(equalTo: viewPass.centerYAnchor),
+            passImage.leadingAnchor.constraint(equalTo: viewPass.leadingAnchor, constant: 30.0),
+            passImage.widthAnchor.constraint(equalToConstant: 204.0),
+            passImage.heightAnchor.constraint(equalToConstant: 198.0)
+        ])
         
     }
 
