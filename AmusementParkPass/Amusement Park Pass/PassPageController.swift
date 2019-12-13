@@ -26,6 +26,20 @@ class PassPageController: UIViewController {
         return view
     }()
     
+    lazy var viewPassContainer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        return view
+    }()
+    
+    lazy var viewPassTest: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        return view
+    }()
+    
     let createNewPassButton = UIButton(type: .system)
     
     required init?(coder: NSCoder) {
@@ -53,7 +67,8 @@ class PassPageController: UIViewController {
         topBarView.addSubview(topBarLabel)
         view.addSubview(createNewPassButton)
         view.addSubview(topBarView)
-        
+        view.addSubview(viewPassContainer)
+        view.addSubview(viewPassTest)
         
         NSLayoutConstraint.activate([
             topBarLabel.centerXAnchor.constraint(equalTo: topBarView.centerXAnchor),
@@ -67,6 +82,27 @@ class PassPageController: UIViewController {
             createNewPassButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30.0),
             createNewPassButton.heightAnchor.constraint(equalToConstant: 49.0)
         ])
+        
+//        let viewPassContainerHeight = viewPassContainer.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4)
+        let viewPassContainerHeight = viewPassContainer.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor, multiplier: 0.4)
+        
+        let viewPassTestHeigt = viewPassTest.heightAnchor.constraint(equalTo: viewPassContainer.heightAnchor, multiplier: 1.1)
+        viewPassTestHeigt.priority = .defaultHigh
+        
+        // Pass container and Pass test viws layouts
+        NSLayoutConstraint.activate([
+            viewPassContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30.00),
+            viewPassContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.00),
+            viewPassContainer.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 10.00),
+            viewPassContainer.bottomAnchor.constraint(equalTo: viewPassTest.topAnchor, constant: -10.00),
+            viewPassContainerHeight,
+            viewPassTest.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30.00),
+            viewPassTest.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30.00),
+            viewPassTest.bottomAnchor.constraint(equalTo: createNewPassButton.topAnchor, constant: -10.00),
+            viewPassTestHeigt
+        ])
+    
+        
         
     }
 
