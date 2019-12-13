@@ -275,7 +275,6 @@ class ViewController: UIViewController {
     @IBAction func populateDateAction(_ sender: UIButton) {
         print("populate data and currently selected - \(currentEntrantType)")
         
-        
         switch currentEntrantType {
         case .classicGuest:
             print("button selected ->>")
@@ -406,6 +405,7 @@ class ViewController: UIViewController {
             navigationController?.pushViewController(passPageController, animated: true)
             navigationController?.isNavigationBarHidden = true
         } else {
+            //TODO: Show some notice
             print("Guest must be provided")
         }
         
