@@ -116,6 +116,24 @@ class PassPageController: UIViewController {
         return view
     }()
     
+    lazy var viewPassStatus: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        view.layer.cornerRadius = 8.0
+        return view
+    }()
+    
+    lazy var viewTestButtonsContainer: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        view.backgroundColor = #colorLiteral(red: 0.416215241, green: 0.6459444165, blue: 0.6289356947, alpha: 1)
+        view.distribution = .equalSpacing
+        
+        return view
+    }()
+    
     let createNewPassButton = UIButton(type: .system)
     
     required init?(coder: NSCoder) {
@@ -227,10 +245,6 @@ class PassPageController: UIViewController {
         topBorder.frame = CGRect(x: 0, y: 0, width: viewPassTest.frame.size.width, height: 1)
         topBorder.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1) // UIColor.purple.cgColor
         viewPassTest.layer.addSublayer(topBorder)
-//        myView.layer.addSublayer(topBorder)
-        
-//        let borderFrame = CGRect(x: 0.0, y: 0.0, width: viewPassTest.frame.size.width, height: 1.0)
-//
         
         
         viewPassTest.addSubview(testingSectionTitle)
@@ -242,6 +256,25 @@ class PassPageController: UIViewController {
             testingSectionTitle.topAnchor.constraint(equalTo: viewPassTest.topAnchor, constant: 30),
             testingSectionInfoText.centerXAnchor.constraint(equalTo: viewPassTest.centerXAnchor),
             testingSectionInfoText.topAnchor.constraint(equalTo: testingSectionTitle.bottomAnchor, constant: 15.0)
+        ])
+        
+        viewPassTest.addSubview(viewPassStatus)
+        viewPassTest.addSubview(viewTestButtonsContainer)
+        
+        let passStatusHeightConstrain = viewPassStatus.heightAnchor.constraint(greaterThanOrEqualTo: viewPassTest.heightAnchor, multiplier: 0.3)
+        passStatusHeightConstrain.priority = .defaultHigh
+        
+        NSLayoutConstraint.activate([
+            viewPassStatus.bottomAnchor.constraint(equalTo: viewPassTest.bottomAnchor),
+            viewPassStatus.leadingAnchor.constraint(equalTo: viewPassTest.leadingAnchor, constant: 0),
+            viewPassStatus.trailingAnchor.constraint(equalTo: viewPassTest.trailingAnchor, constant: 0),
+            viewTestButtonsContainer.topAnchor.constraint(equalTo: testingSectionInfoText.bottomAnchor, constant: 15.0),
+            viewTestButtonsContainer.leadingAnchor.constraint(equalTo: viewPassTest.leadingAnchor, constant: 0),
+            viewTestButtonsContainer.trailingAnchor.constraint(equalTo: viewPassTest.trailingAnchor, constant: 0),
+            viewTestButtonsContainer.heightAnchor.constraint(equalTo: viewPassTest.heightAnchor, multiplier: 0.4),
+            viewPassStatus.topAnchor.constraint(equalTo: viewTestButtonsContainer.bottomAnchor, constant: 10.0),
+            passStatusHeightConstrain
+            
         ])
         
     }
