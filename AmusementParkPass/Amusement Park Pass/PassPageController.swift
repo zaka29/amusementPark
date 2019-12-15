@@ -26,6 +26,62 @@ class PassPageController: UIViewController {
         return label
     }()
     
+    lazy var entrantFullName: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Entrant Full Name"
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        return label
+    }()
+    
+    lazy var entrantType: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Entrant type"
+        label.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        return label
+    }()
+    
+    lazy var merchDiscount: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "- Merch discount: %"
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        return label
+    }()
+    
+    lazy var foodDiscount: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "- Food discount: %"
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        return label
+    }()
+    
+    lazy var canSkipLines: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "- Can skip lines"
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        return label
+    }()
+    
+    lazy var testingSectionTitle: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Access Testing"
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        return label
+    }()
+    
+    lazy var testingSectionInfoText: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Confirm the pass has the expected level of access when swiped at the kiosk"
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        return label
+    }()
+    
     lazy var topBarView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -39,10 +95,16 @@ class PassPageController: UIViewController {
         return view
     }()
     
+    lazy var viewPassBorder: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        return view
+    }()
+    
     lazy var viewPassTest: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         return view
     }()
     
@@ -131,6 +193,55 @@ class PassPageController: UIViewController {
             passImage.leadingAnchor.constraint(equalTo: viewPass.leadingAnchor, constant: 30.0),
             passImage.widthAnchor.constraint(equalToConstant: 204.0),
             passImage.heightAnchor.constraint(equalToConstant: 198.0)
+        ])
+        
+        viewPass.addSubview(entrantFullName)
+        
+        NSLayoutConstraint.activate([
+            entrantFullName.leadingAnchor.constraint(equalTo: passImage.trailingAnchor, constant: 30),
+            entrantFullName.topAnchor.constraint(equalTo: passImage.topAnchor)
+        ])
+        
+        viewPass.addSubview(entrantType)
+        
+        NSLayoutConstraint.activate([
+            entrantType.leadingAnchor.constraint(equalTo: entrantFullName.leadingAnchor),
+            entrantType.topAnchor.constraint(equalTo: entrantFullName.bottomAnchor, constant: 15.0)
+        ])
+        
+        viewPass.addSubview(merchDiscount)
+        viewPass.addSubview(foodDiscount)
+        viewPass.addSubview(canSkipLines)
+        
+        NSLayoutConstraint.activate([
+            merchDiscount.leadingAnchor.constraint(equalTo: entrantType.leadingAnchor),
+            merchDiscount.topAnchor.constraint(equalTo: entrantType.bottomAnchor, constant: 30
+            ),
+            foodDiscount.leadingAnchor.constraint(equalTo: merchDiscount.leadingAnchor),
+            foodDiscount.topAnchor.constraint(equalTo: merchDiscount.bottomAnchor, constant: 15.0),
+            canSkipLines.leadingAnchor.constraint(equalTo: foodDiscount.leadingAnchor),
+            canSkipLines.topAnchor.constraint(equalTo: foodDiscount.bottomAnchor, constant: 15.0)
+        ])
+        
+        let topBorder: CALayer = CALayer()
+        topBorder.frame = CGRect(x: 0, y: 0, width: viewPassTest.frame.size.width, height: 1)
+        topBorder.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1) // UIColor.purple.cgColor
+        viewPassTest.layer.addSublayer(topBorder)
+//        myView.layer.addSublayer(topBorder)
+        
+//        let borderFrame = CGRect(x: 0.0, y: 0.0, width: viewPassTest.frame.size.width, height: 1.0)
+//
+        
+        
+        viewPassTest.addSubview(testingSectionTitle)
+        viewPassTest.addSubview(testingSectionInfoText)
+        
+        
+        NSLayoutConstraint.activate([
+            testingSectionTitle.centerXAnchor.constraint(equalTo: viewPassTest.centerXAnchor),
+            testingSectionTitle.topAnchor.constraint(equalTo: viewPassTest.topAnchor, constant: 30),
+            testingSectionInfoText.centerXAnchor.constraint(equalTo: viewPassTest.centerXAnchor),
+            testingSectionInfoText.topAnchor.constraint(equalTo: testingSectionTitle.bottomAnchor, constant: 15.0)
         ])
         
     }
