@@ -9,28 +9,26 @@
 import Foundation
 
 class SeniorGuest: Entrant {
-    var guestPersonalDetails: GuestPersonalDetails
     
     init(guestDetails details: GuestPersonalDetails) throws {
-        guestPersonalDetails = details
-        super.init(entrantType: .seniorGuest, canAccessRides: true)
         
-        guard !guestPersonalDetails.firstName.isEmpty else {
+        guard !details.firstName.isEmpty else {
             throw GuestError.personalDetailsRequires(message: "Name is required")
         }
         
-        guard !guestPersonalDetails.lastName.isEmpty else {
+        guard !details.lastName.isEmpty else {
             throw GuestError.personalDetailsRequires(message: "Last name is required")
         }
         
-        if !validateDate(guestPersonalDetails.dobString) {
+        if !SeniorGuest.validateDate(details.dobString) {
             throw GuestError.dateOfBirthRequired(message: "please enter valid date in mm/dd/yyyy format")
         }
         
-        
+        super.init(entrantType: .seniorGuest, canAccessRides: true)
+        self.entrantDetails = details
     }
     
-    func validateDate(_ date: String) -> Bool {
+    static func validateDate(_ date: String) -> Bool {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "mm/dd/yyyy"
         if (dateFormatter.date(from: date) != nil) {

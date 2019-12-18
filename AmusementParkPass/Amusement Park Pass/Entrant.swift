@@ -8,6 +8,19 @@
 
 import Foundation
 
+protocol EntrantProtocol {
+    
+    var type: EntrantType {get}
+    var entrantDetails: GuestPersonalDetails? {get set}
+    var hasRidesAccess: Bool {get}
+    
+    func getAreaAccess() -> [AreaAccess]
+    func canSkipLines() -> RideAccess
+    func foodDiscount() -> String
+    func merchandiseDidcount() -> String
+
+}
+
 enum EntrantType {
     case classicGuest
     case vipGuest
@@ -56,17 +69,15 @@ extension EntrantType {
     }
 }
 
-class Entrant {
+class Entrant: EntrantProtocol {
+    
+    var entrantDetails: GuestPersonalDetails?
     var type: EntrantType
     var hasRidesAccess: Bool
     
     init(entrantType: EntrantType, canAccessRides: Bool) {
         type = entrantType
         hasRidesAccess = canAccessRides
-    }
-    
-    convenience init(entrantType: EntrantType) {
-        self.init(entrantType: entrantType, canAccessRides: true)
     }
     
     func getAreaAccess() -> [AreaAccess] {

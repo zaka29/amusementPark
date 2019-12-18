@@ -82,6 +82,14 @@ class PassPageController: UIViewController {
         return label
     }()
     
+    lazy var testResultLabel: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Test Result"
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        return label
+    }()
+    
     lazy var topBarView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -119,7 +127,7 @@ class PassPageController: UIViewController {
     lazy var viewPassStatus: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7764705882, blue: 0.8117647059, alpha: 1)
         view.layer.cornerRadius = 8.0
         return view
     }()
@@ -128,9 +136,10 @@ class PassPageController: UIViewController {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
+        view.distribution = .fillEqually
+        view.alignment = .top
+        view.spacing = 10.0
         view.backgroundColor = #colorLiteral(red: 0.416215241, green: 0.6459444165, blue: 0.6289356947, alpha: 1)
-        view.distribution = .equalSpacing
-        
         return view
     }()
     
@@ -153,6 +162,17 @@ class PassPageController: UIViewController {
         createNewPassButton.setTitle("Create New Pass", for: .normal)
         createNewPassButton.setTitleColor(.white, for: .normal)
         createNewPassButton.addTarget(self, action: #selector(returnToMainView), for: .touchUpInside)
+        // Added test access buttons
+        let buttons = generateTestButtons()
+        for button in buttons {
+             viewTestButtonsContainer.addArrangedSubview(button)
+        }
+        
+        if pass != nil {
+            entrantFullName.text = pass?.getFullName()
+            entrantType.text = pass?.getEntrantType()
+            
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -259,9 +279,10 @@ class PassPageController: UIViewController {
         ])
         
         viewPassTest.addSubview(viewPassStatus)
+        viewPassStatus.addSubview(testResultLabel)
         viewPassTest.addSubview(viewTestButtonsContainer)
         
-        let passStatusHeightConstrain = viewPassStatus.heightAnchor.constraint(greaterThanOrEqualTo: viewPassTest.heightAnchor, multiplier: 0.3)
+        let passStatusHeightConstrain = viewPassStatus.heightAnchor.constraint(greaterThanOrEqualTo: viewPassTest.heightAnchor, multiplier: 0.5)
         passStatusHeightConstrain.priority = .defaultHigh
         
         NSLayoutConstraint.activate([
@@ -271,12 +292,13 @@ class PassPageController: UIViewController {
             viewTestButtonsContainer.topAnchor.constraint(equalTo: testingSectionInfoText.bottomAnchor, constant: 15.0),
             viewTestButtonsContainer.leadingAnchor.constraint(equalTo: viewPassTest.leadingAnchor, constant: 0),
             viewTestButtonsContainer.trailingAnchor.constraint(equalTo: viewPassTest.trailingAnchor, constant: 0),
-            viewTestButtonsContainer.heightAnchor.constraint(equalTo: viewPassTest.heightAnchor, multiplier: 0.4),
+            viewTestButtonsContainer.heightAnchor.constraint(equalTo: viewPassTest.heightAnchor, multiplier: 0.2),
             viewPassStatus.topAnchor.constraint(equalTo: viewTestButtonsContainer.bottomAnchor, constant: 10.0),
-            passStatusHeightConstrain
-            
+            passStatusHeightConstrain,
+            testResultLabel.centerYAnchor.constraint(equalTo: viewPassStatus.centerYAnchor),
+            testResultLabel.centerXAnchor.constraint(equalTo: viewPassStatus.centerXAnchor)
         ])
-        
+         
     }
 
     @objc func returnToMainView(_ sender: Any) {
@@ -284,5 +306,26 @@ class PassPageController: UIViewController {
         var viewControllers = navController.viewControllers
         viewControllers.removeLast()
         navController.viewControllers = viewControllers
+    }
+    
+    func generateTestButtons() -> [UIButton] {
+        var result = Array<UIButton>()
+        
+        for area in AreaAccess.allCases {
+            let testButton = UIButton()
+            testButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            testButton.layer.cornerRadius = 8
+            testButton.setTitleColor(UIColor(red: 0.416215241, green: 0.6459444165, blue: 0.6289356947, alpha: 1), for: .normal)
+            switch area {
+            case .amusementArea: testButton.setTitle("Rides", for: .normal)
+            case .kitchenArea: testButton.setTitle("Kitchen", for: .normal)
+            case .maintenanceArea: testButton.setTitle("Maintenance", for: .normal)
+            case .officeArea: testButton.setTitle("Office", for: .normal)
+            case .rideControlArea: testButton.setTitle("Ride Control", for: .normal)
+            }
+            result.append(testButton)
+        }
+        
+        return result
     }
 }

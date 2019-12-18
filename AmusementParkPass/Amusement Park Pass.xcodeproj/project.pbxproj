@@ -20,6 +20,7 @@
 		9B6324D423A27055000928DD /* SeasonPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6324D323A27055000928DD /* SeasonPass.swift */; };
 		9B6324D623A2A73A000928DD /* SeniorGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6324D523A2A73A000928DD /* SeniorGuest.swift */; };
 		9B6324D823A2A795000928DD /* VipGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6324D723A2A795000928DD /* VipGuest.swift */; };
+		9B6324DA23AA330C000928DD /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6324D923AA330C000928DD /* Employee.swift */; };
 		9B710BFF238EC19A00F7DB6F /* HourlyEmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B710BFE238EC19A00F7DB6F /* HourlyEmployee.swift */; };
 		9B710C01238ECE4400F7DB6F /* FreeChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B710C00238ECE4400F7DB6F /* FreeChild.swift */; };
 		9BEC5D012399454E00EA5ECF /* PassPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC5D002399454E00EA5ECF /* PassPageController.swift */; };
@@ -54,6 +55,7 @@
 		9B6324D323A27055000928DD /* SeasonPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonPass.swift; sourceTree = "<group>"; };
 		9B6324D523A2A73A000928DD /* SeniorGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorGuest.swift; sourceTree = "<group>"; };
 		9B6324D723A2A795000928DD /* VipGuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipGuest.swift; sourceTree = "<group>"; };
+		9B6324D923AA330C000928DD /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		9B710BFE238EC19A00F7DB6F /* HourlyEmployee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyEmployee.swift; sourceTree = "<group>"; };
 		9B710C00238ECE4400F7DB6F /* FreeChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeChild.swift; sourceTree = "<group>"; };
 		9BEC5D002399454E00EA5ECF /* PassPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassPageController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				9B710BFE238EC19A00F7DB6F /* HourlyEmployee.swift */,
 				9B6324CF239FEA60000928DD /* Manager.swift */,
 				9B6324D123A25B2B000928DD /* Pass.swift */,
+				9B6324D923AA330C000928DD /* Employee.swift */,
 			);
 			path = "Amusement Park Pass";
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				9B6324D623A2A73A000928DD /* SeniorGuest.swift in Sources */,
 				9B6324D423A27055000928DD /* SeasonPass.swift in Sources */,
 				9B24E355238E8D3C00C8FB15 /* Access.swift in Sources */,
+				9B6324DA23AA330C000928DD /* Employee.swift in Sources */,
 				9B710BFF238EC19A00F7DB6F /* HourlyEmployee.swift in Sources */,
 				9B710C01238ECE4400F7DB6F /* FreeChild.swift in Sources */,
 				9B6324D823A2A795000928DD /* VipGuest.swift in Sources */,

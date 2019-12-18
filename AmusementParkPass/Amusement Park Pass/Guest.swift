@@ -13,7 +13,6 @@ enum GuestError: Error {
     case personalDetailsRequires(message: String)
 }
 
-// A simple guest
 struct Address {
     var city = "Melbourne"
     var street = "Unit 3 5 Fitzroy Ave"

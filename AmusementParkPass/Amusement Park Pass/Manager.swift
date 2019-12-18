@@ -8,45 +8,15 @@
 
 import Foundation
 
-struct ManagerAddress {
-    var city = "Sydney"
-    var street = "Unit 3 5 Bondi Beach Rd"
-    var state = "NSW"
-    var code = "3005"
+class Manager: Employee {
     
-    var fullAddress: String {
-        return "\(street) \n \(city) \(state) \(code)"
-    }
-}
-
-struct ManagerBusinessInformation {
-    var firstName = "Gendalf"
-    var lastName = "White"
-    var socialSecurityNumber = "777334644"
-    var dobString = "12/25/1900"
-    var address: ManagerAddress
-    var tier = "Senior wizzard"
+    init(mnagerBusinessDetails details: EmployeeBusinessDetails) throws {
         
-    var fullName: String {
-        return "\(firstName) \(lastName)"
-    }
-    
-    // add setters
-    mutating func settName(_ firstName: String) {
-        self.firstName = firstName
-    }
-    
-    mutating func setName(_ lastName: String) {
-        self.lastName = lastName
-    }
-    
-}
-
-class Manager: Entrant {
-    var businessDetails: ManagerBusinessInformation
-    
-    init(type: EntrantType, businessDetails details: ManagerBusinessInformation) {
-        businessDetails = details
-        super.init(entrantType: type, canAccessRides: true)
+        guard details.managerTier != nil else {
+            throw EmployeeError.businessInformationRequired(message: "Tier is required for all managers")
+        }
+        
+        try super.init(employeeType: .manager, businessDetails: details)
+ 
     }
 }

@@ -10,43 +10,44 @@ import Foundation
 
 
 class SeasonPassGuest: Entrant {
-    var guestPersonalDetails: GuestPersonalDetails
-    
-    // do a throwing initialisation here
-    init(guestDetais details: GuestPersonalDetails ) throws {
-        guestPersonalDetails = details
-        super.init(entrantType: .seasonPass, canAccessRides: true)
+
+    init(guestDetails details: GuestPersonalDetails ) throws {
         
-        if !validateDate(guestPersonalDetails.dobString) {
+        if !SeasonPassGuest.validateDate(details.dobString) {
             throw GuestError.dateOfBirthRequired(message: "please enter valid date in mm/dd/yyyy format")
         }
         
-        guard !guestPersonalDetails.firstName.isEmpty else {
+        guard !details.firstName.isEmpty else {
             throw GuestError.personalDetailsRequires(message: "Name is required")
         }
-        
-        guard !guestPersonalDetails.lastName.isEmpty else {
+
+        guard !details.lastName.isEmpty else {
             throw GuestError.personalDetailsRequires(message: "Last name is required")
         }
-        
-        guard !guestPersonalDetails.address.city.isEmpty else {
+
+        guard !details.address.city.isEmpty else {
             throw GuestError.personalDetailsRequires(message: "City is required")
         }
-        
-        guard !guestPersonalDetails.address.street.isEmpty else {
+
+        guard !details.address.street.isEmpty else {
             throw GuestError.personalDetailsRequires(message: "Street is reqiured")
         }
-        
-        guard !guestPersonalDetails.address.state.isEmpty else {
+
+        guard !details.address.state.isEmpty else {
             throw GuestError.personalDetailsRequires(message: "State is required")
         }
-        
-        guard !guestPersonalDetails.address.code.isEmpty else {
+
+        guard !details.address.code.isEmpty else {
             throw GuestError.personalDetailsRequires(message: "Code is reqiured")
         }
+        
+        super.init(entrantType: .seasonPass, canAccessRides: true)
+        self.entrantDetails = details
+
     }
     
-    func validateDate(_ date: String) -> Bool {
+    
+    static func validateDate(_ date: String) -> Bool {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "mm/dd/yyyy"
         if (dateFormatter.date(from: date) != nil) {

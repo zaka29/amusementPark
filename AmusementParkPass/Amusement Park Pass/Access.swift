@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AreaAccess {
+enum AreaAccess: CaseIterable {
     case amusementArea
     case kitchenArea
     case rideControlArea

@@ -94,7 +94,7 @@ class ViewController: UIViewController {
     // Test cases
     func testGuestsTypes(){
         // VIP GUEST
-        let vipGuest = Entrant(entrantType: .vipGuest)
+        let vipGuest = Entrant(entrantType: .vipGuest, canAccessRides: true)
         // can skip lines
         print("Vip Guest can skip lines - \(vipGuest.canSkipLines())")
         // has food discount
@@ -106,20 +106,7 @@ class ViewController: UIViewController {
         // can aceess office
         print("Vip guest has access to office areas - \(swipeAreaAcces(for: vipGuest, to: .officeArea))")
         
-        // Hourly employee kitchen area
-        let kitchenWorker = Entrant(entrantType: .hourlyEmployeeFood)
-        // can skip lines
-        print("Enum value call - \(RideAccess.skipLines(canSkipLine: true))")
-        print("Kitchen worker can skip lines - \(kitchenWorker.canSkipLines())")
-        // has food discount
-        print("Kitchen worker has food discount of - \(kitchenWorker.foodDiscount())")
-        // can access the rides
-        print("Kitchen worker has access to the rides - \(swipeRidesAccess(for: kitchenWorker))")
-        // can access kitchen area
-        print("Kitchen worker has access to kitchen areas - \(swipeAreaAcces(for: kitchenWorker, to: .kitchenArea))")
-        // can aceess office
-        print("Kitchen worker has access to office areas - \(swipeAreaAcces(for: kitchenWorker, to: .officeArea))")
-            }
+    }
 
     @IBAction func onMenuItemTap(_ sender: UIButton) {
         print("Button clicked - \(String(describing: sender.titleLabel?.text))")
@@ -276,8 +263,9 @@ class ViewController: UIViewController {
         print("populate data and currently selected - \(currentEntrantType)")
         
         switch currentEntrantType {
-        case .classicGuest:
+        case .classicGuest, .vipGuest:
             print("button selected ->>")
+            
         case .seniorGuest:
             let seniorGuestData = GuestPersonalDetails(address: Address())
             fieldDob.text = seniorGuestData.dobString
@@ -293,9 +281,6 @@ class ViewController: UIViewController {
             cityField.text = seasonPassData.address.city
             stateField.text = seasonPassData.address.state
             codeField.text = seasonPassData.address.code
-            
-        case .vipGuest:
-            print("button selected ->>")
     
         case .freeChild:
             let freeChildTestData = FreeChildData()
@@ -303,7 +288,7 @@ class ViewController: UIViewController {
             fieldDob.alpha = 1
             
         case .hourlyEmployeeFood, .hourlyEmployeeService, .hourlyEmployeeMaintenance:
-            let employeeData = EmployeeBusinessInformation(address: EmployeeAddress())
+            let employeeData = EmployeeBusinessDetails(address: Address())
             fieldDob.text = employeeData.dobString
             firstNameField.text = employeeData.firstName
             lastNameField.text = employeeData.lastName
@@ -314,7 +299,7 @@ class ViewController: UIViewController {
             codeField.text = employeeData.address.code
             
         case .manager:
-            let managerData = ManagerBusinessInformation(address: ManagerAddress())
+            let managerData = EmployeeBusinessDetails(address: Address(), managerTier: "Senior")
             fieldDob.text = managerData.dobString
             firstNameField.text = managerData.firstName
             lastNameField.text = managerData.lastName
@@ -380,7 +365,7 @@ class ViewController: UIViewController {
             details.lastName = lastNameField.text ?? ""
             
             do {
-                try guest = SeasonPassGuest(guestDetais: details)
+                try guest = SeasonPassGuest(guestDetails: details)
             } catch GuestError.dateOfBirthRequired(let message) {
                 alert.message = message
                 self.present(alert, animated: true, completion: nil)
